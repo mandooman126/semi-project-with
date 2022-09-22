@@ -1,0 +1,26 @@
+1663507364244	Copy package
+1663507371170	Copy package
+1663507373583	Delete element
+1663507376401	Delete element
+1663507380034	Delete element
+1663507384141	Delete element
+1663507393039	Rename package 'kr.co.ansany.notice.controller.copy'
+1663507418287	Copy package
+1663507457422	Copy package
+1663507476424	Copy package
+1663507493474	Rename package 'kr.co.ansany.notice.model.dao.copy'
+1663507505671	Rename package 'kr.co.ansany.notice.model.vo.copy'
+1663507509445	Rename package 'kr.co.ansany.notice.model.dao.copy2'
+1663517736700	Rename resource 'NoticeList.css'
+1663518089580	Delete element
+1663600568028	Rename resource 'noticeVew.jsp'
+1663601218779	Delete element
+1663841568564	Rename compilation unit 'NoticeWriteFrmServlet.java'
+1663841630901	Rename type 'NoticeWriteServlet'
+1663841705791	Rename resource 'freeboard'
+1663843122389	Rename type 'NoticeViewServlet'
+1663843153111	Rename type 'FreeBoardServlet'
+1663845574505	Rename type 'NoticeDeleteServlet'
+1663846055511	Rename type 'NoticeFileDownServlet'
+1663846291658	Rename type 'NoticeUpdateFrmServlet'
+1663846420977	Rename type 'NoticeUpdateServlet'

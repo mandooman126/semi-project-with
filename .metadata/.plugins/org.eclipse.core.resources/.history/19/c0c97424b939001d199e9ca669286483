@@ -1,0 +1,8 @@
+package kr.co.ansany.photo.model.vo;
+
+import java.util.ArrayList;
+
+public class PhotoViewData {
+	private Photo p;
+	private ArrayList<PhotoComment> commentList;
+}

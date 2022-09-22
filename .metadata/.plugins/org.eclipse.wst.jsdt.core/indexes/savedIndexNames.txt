@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+C:\Users\Lee Jungwoo\Documents\SEMI-PROJECT\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+739824355.index
+375520976.index
+4046522603.index
+3751397091.index
+1774576746.index
+1068188815.index
+2616883325.index

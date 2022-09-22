@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>사진게시판</title>
+</head>
+<body>
+	<%@include file="/WEB-INF/views/common/header.jsp"%>
+	<div class="notice_wrap">
+		<nav class="page-navi">
+			<ul>
+				<li><a href="/noticeList.do?reqPage=1"> <span
+						class="tablink">공지사항</span>
+				</a></li>
+				<li><a href="#"> <span class="tablink">구매후기</span>
+				</a></li>
+				<li><a href="#"> <span class="tablink">자유게시판</span>
+				</a></li>
+				<li><a href="/photoList.do"> <span class="tablink">사진전</span>
+				</a></li>
+			</ul>
+		</nav>
+
+		<%@include file="/WEB-INF/views/common/footer.jsp"%>
+</body>
+</html>

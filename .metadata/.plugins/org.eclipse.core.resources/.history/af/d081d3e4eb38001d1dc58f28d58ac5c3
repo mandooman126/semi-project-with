@@ -1,0 +1,7 @@
+package kr.co.ansany.photo.model.service;
+
+import kr.co.ansany.photo.model.dao.PhotoDao;
+
+public class PhotoService {
+	private PhotoDao dao;
+}

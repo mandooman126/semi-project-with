@@ -1,0 +1,12 @@
+package kr.co.ansany.photo.model.vo;
+
+public class Photo {
+	private int photoNo;
+	private String photoWriter;
+	private String photoTitle;
+	private String photoContent;
+	private int photoReadCount;
+	private String photoDate;
+	private String photoFilePath;
+	private String photoFileName;
+}

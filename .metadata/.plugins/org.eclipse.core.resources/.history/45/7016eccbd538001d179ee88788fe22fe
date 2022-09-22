@@ -1,0 +1,65 @@
+package kr.co.ansany.notice.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.swing.plaf.multi.MultiButtonUI;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+/**
+ * Servlet implementation class NoticeUpdateServlet
+ */
+@WebServlet(name = "NoticeUpdate", urlPatterns = { "/noticeUpdate.do" })
+public class NoticeUpdateServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public NoticeUpdateServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		String root = getServletContext().getRealPath("/");
+		String saveDirectroy = root + "upload/notice";
+
+		int maxSize = 10 * 1024 * 1024;
+
+		MultipartRequest mRequest = new MultipartRequest(request, saveDirectroy, maxSize, "UTF-8",
+				new DefaultFileRenamePolicy());
+
+		int noticeNo = Integer.parseInt(mRequest.getParameter("noticeNo"));
+		String noticeTitle = mRequest.getParameter("noticeTitle");
+		String noticeContent = mRequest.getParameter("noticeContent");
+		String status = mRequest.getParameter("status");
+		String filename = mRequest.getOriginalFileName("upfile");
+		String filepath = mRequest.getFilesystemName("upfile");
+
+		String oldFilename = mRequest.getParameter("oldFilename");
+		String oldFilepath = mRequest.getParameter("oldFilepath");
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

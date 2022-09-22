@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.notice.model.dao.NoticeDao"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.notice.model.vo.NoticePageData"/>
+    <fullyQualifiedTypeName name="javax.swing.plaf.multi.MultiButtonUI"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.notice.model.vo.Notice"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.notice.model.service.NoticeService"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.photo.model.dao.PhotoDao"/>
+    <fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.RequestContext"/>
+    <fullyQualifiedTypeName name="com.oreilly.servlet.MultipartRequest"/>
+    <fullyQualifiedTypeName name="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.photo.controller.PhotoUpdateServlet"/>
+    <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.photo.model.service.PhotoService"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.photo.model.vo.Photo"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.photo.model.vo.PhotoComment"/>
+    <fullyQualifiedTypeName name="common.JDBCTemplate"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.photo.model.vo.PhotoViewData"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.freeboard.model.service.FreeBoardService"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.freeboard.model.vo.FreeBoard"/>
+</qualifiedTypeNameHistroy>
