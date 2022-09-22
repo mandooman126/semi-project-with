@@ -82,4 +82,5 @@ Member m = (Member) session.getAttribute("m");
 		</div>
 	</div>
 </div>
+살짝확인
 <script src="/js/header.js"></script>
