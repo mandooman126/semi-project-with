@@ -168,7 +168,6 @@ th {
 	color: #fff;
 }
 
-
 .inputRecommentBox {
 	margin: 30px 0px;
 	display: none;
@@ -197,11 +196,13 @@ th {
 .inputRecommentBox>form>ul>li:nth-last-child(2)>textarea.input-form {
 	height: 96px;
 	min-height: 96px;
+	resize: none;
 }
 
 .inputRecommentBox>form>ul>li:last-child {
 	width: 10%;
 }
+
 .inputRecommentBox>form>ul>li:last-child>button {
 	height: 96px;
 	border: 1px solid black;
@@ -291,6 +292,9 @@ th {
 .material-icons {
 	color: #222222;
 }
+textarea {
+	resize: none;
+}
 </style>
 </head>
 <body>
@@ -346,9 +350,9 @@ th {
 			%>
 
 			<div class="inputCommentBox">
-				<form action="/insertComment.do" method="post">
+				<form action="/insertPcomment.do" method="post">
 					<ul>
-						<li><span class="material-icons">account_box</span></li>
+						<li><span class="material-icons">person</span></li>
 						<li><input type="hidden" name="pCommentWriter"
 							value="<%=m.getMemberId()%>"> <input type="hidden"
 							name="photoRef" value="<%=p.getPhotoNo()%>"> <input
@@ -363,20 +367,18 @@ th {
 			<%
 			}
 			%>
-
 			<div class="commentBox">
 				<%
 				for (PhotoComment pc : commentList) {
 				%>
 				<ul class="posting-comment">
-					<li><span class="material-icons">account_box</span></li>
+					<li><span class="material-icons">person</span></li>
 					<li>
 						<p class="comment-info">
 							<span><%=pc.getpCommentWriter()%></span> <span><%=pc.getpCommentDate()%></span>
 						</p>
-						<p class="comment-content"><%=pc.getpCommentContentBr()%>
-							<textarea name="ncContent" class="input-form"
-								style="min-height: 96px; display: none;"><%=pc.getpCommentContent()%></textarea>
+						<p class="comment-content"><%=pc.getpCommentContent()%></p><textarea name="pCommentContent" class="input-form"
+							style="min-height: 96px; display: none;"><%=pc.getpCommentContent()%></textarea>
 						<p class="comment-link">
 							<%
 							if (m != null) {
@@ -386,7 +388,8 @@ th {
 							%>
 							<a href="javascript:void(0)"
 								onclick="modifyComment(this,<%=pc.getpCommentNo()%>, <%=p.getPhotoNo()%>);">수정</a>
-							<a href="javascript:void(0)">삭제</a>
+							<a href="javascript:void(0)"
+								onclick="deleteComment(this,<%=pc.getpCommentNo()%>, <%=p.getPhotoNo()%>);">삭제</a>
 							<%
 							}
 							%>
@@ -397,6 +400,7 @@ th {
 						</p>
 					</li>
 				</ul>
+
 				<%
 				for (PhotoComment pct : reCommentList) {
 				%>
@@ -405,13 +409,32 @@ th {
 				%>
 				<ul class="posting-comment reply">
 					<li><span class="material-icons">subdirectory_arrow_right</span>
-						<span class="material-icons">account_box</span></li>
+						<span class="material-icons">person</span></li>
 					<li>
 						<p class="comment-info">
 							<span><%=pct.getpCommentWriter()%></span> <span><%=pct.getpCommentDate()%></span>
 						</p>
-						<p class="comment-content"><%=pct.getpCommentContentBr()%>
+						<p class="comment-content"><%=pct.getpCommentContent()%></p> <textarea
+							name="pCommentContent" class="input-form"
+							style="min-height: 96px; display: none;"><%=pct.getpCommentContent()%></textarea>
 						<p class="comment-link">
+							<%
+							if (m != null) {
+							%>
+							<%
+							if (m.getMemberId().equals(pct.getpCommentWriter())) {
+							%>
+							<a href="javascript:void(0)"
+								onclick="modifyComment(this,<%=pct.getpCommentNo()%>, <%=p.getPhotoNo()%>);">수정</a>
+							<a href="javascript:void(0)"
+								onclick="deleteComment(this,<%=pct.getpCommentNo()%>, <%=p.getPhotoNo()%>);">삭제</a>
+							<%
+							}
+							%>
+							<%
+							}
+							%>
+						</p>
 					</li>
 				</ul>
 				<%
@@ -420,20 +443,19 @@ th {
 				<%
 				}
 				%>
-
 				<%
 				if (m != null) {
 				%>
 				<div class="inputRecommentBox">
-					<form action="/insertComment.do" method="post">
+					<form action="/insertPcomment.do" method="post">
 						<ul>
 							<li><span class="material-icons">subdirectory_arrow_right</span>
 							</li>
 							<li><input type="hidden" name="pCommentWriter"
 								value="<%=m.getMemberId()%>"> <input type="hidden"
 								name="photoRef" value="<%=p.getPhotoNo()%>"> <input
-								type="hidden" name="pCommentRef" value="<%=pc.getpCommentNo()%>">
-								<textarea class="input-form" name="pCommentContent"></textarea></li>
+								type="hidden" name="pCommentRef" value="<%=pc.getpCommentNo()%>"> <textarea
+									class="input-form" name="pCommentContent"></textarea></li>
 							<li>
 								<button type="submit" class="btn-repl">댓글쓰기</button>
 							</li>
@@ -441,16 +463,15 @@ th {
 					</form>
 				</div>
 				<%
-				}
+				} // 답글달기 form 조건문
 				%>
 				<%
-				}
+				} // 댓글종료 반복문 종료
 				%>
 			</div>
 		</div>
-	</div>
 
-	<script>
+		<script>
 	
 		function photoDelete(photoNo){
 			if(confirm("삭제하시겠습니까?")) {
@@ -470,9 +491,47 @@ th {
 		});
 		
 		function modifyComment(obj,pCommentNo,photoNo) {
+			$(obj).parent().prev().show();
+			$(obj).parent().prev().prev().hide();
+			$(obj).text("수정");
+			$(obj).attr("onclick","modifyComplete(this,"+pCommentNo+","+photoNo+")");
 			
+			$(obj).next().text("취소");
+			$(obj).next().attr("onclick","modifyCancle(this,"+pCommentNo+","+photoNo+")");
+			
+			$(obj).next().next().hide();
+		}
+		function modifyCancle(obj,pCommentNo,photoNo){
+			$(obj).parent().prev().hide();
+			$(obj).parent().prev().prev().show();
+			
+			$(obj).prev().text("수정");
+			$(obj).prev().attr("onclick","modifyComment(this,"+pCommentNo+","+photoNo+")");
+			$(obj).text("삭제");
+			$(obj).attr("onclick","deleteComment(this,"+pCommentNo+","+photoNo+")");
+			$(obj).next().show();
+		}
+		
+		function modifyComplete(obj,pCommentNo,photoNo){
+			const form = $("<form action='/photoCommentUpdate.do' method='post'></form>");
+			const pCommentInput = $("<input type ='text' name='pCommentNo'>");
+			pCommentInput.val(pCommentNo);
+			form.append(pCommentInput);
+			const photoInput = $("<input type='text' name='photoNo'>");
+			photoInput.val(photoNo);
+			form.append(photoInput);
+			const pCommentContent = $(obj).parent().prev();
+			form.append(pCommentContent);
+			$("body").append(form);
+			form.submit();
+		}
+		
+		function deleteComment(obj,pCommentNo,photoNo){
+			if(confirm("댓글을 삭제하시겠습니까?")){
+				location.href = "/deletePhotoComment.do?pCommentNo="+pCommentNo+"&photoNo="+photoNo;
+			}
 		}
 	</script>
-	<%@include file="/WEB-INF/views/common/footer.jsp"%>
+		<%@include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>

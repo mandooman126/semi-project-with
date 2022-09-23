@@ -6,13 +6,14 @@
 		<item key="isRegEx" value="false"/>
 		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="photo"/>
+			<item value="pComm"/>
+			<item value="wrap-bottom"/>
+			<item value="material"/>
+			<item value="textarea"/>
+			<item value="nc"/>
 			<item value="notice"/>
 			<item value="recomm"/>
-			<item value="pagination"/>
-			<item value="pagi"/>
-			<item value="hover"/>
-			<item value="btn"/>
-			<item value="b"/>
 		</list>
 		<list key="replacehistory">
 		</list>

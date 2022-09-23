@@ -154,6 +154,9 @@ tbody tr>td:nth-child(2) {
 	background-color: #000;
 	color: #fff;
 }
+.posting-content{
+	text-align: center;
+}
 </style>
 </head>
 <body>

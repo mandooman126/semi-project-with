@@ -62,6 +62,7 @@ p {
 .wrap-bottom {
 	width: 960x;
 	margin: 0 auto;
+	margin-bottom: 36px;
 }
 
 .wrap-bottom>div>a, button {
@@ -101,8 +102,171 @@ p {
 .td-title {
 	width: 300px
 }
+
 th {
 	vertical-align: middle;
+}
+
+.inputCommentBox>form>ul {
+	list-style-type: none;
+	display: flex;
+}
+
+.inputCommentBox>form>ul>li:first-child {
+	width: 15%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.inputCommentBox>form>ul>li:first-child>span {
+	font-size: 80px;
+}
+
+.inputCommentBox>form>ul>li:nth-child(2) {
+	width: 75%
+}
+
+.inputCommentBox>form>ul>li:nth-child(2)>textarea.input-form {
+	height: 96px;
+	min-height: 96px;
+	resize: none;
+}
+
+.inputCommentBox>form>ul>li:last-child {
+	width: 10%;
+}
+
+.inputCommentBox>form>ul>li:last-child>button {
+	height: 96px;
+	border: 1px solid black;
+	background-color: black;
+	color: #fff;
+}
+
+.inputRecommentBox {
+	margin: 30px 0px;
+	display: none;
+}
+
+.inputRecommentBox>form>ul {
+	list-style-type: none;
+	display: flex;
+}
+
+.inputRecommentBox>form>ul>li:first-child {
+	width: 15%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.inputRecommentBox>form>ul>li:first-child>span {
+	font-size: 50px;
+}
+
+.inputRecommentBox>form>ul>li:nth-last-child(2) {
+	width: 75%;
+}
+
+.inputRecommentBox>form>ul>li:nth-last-child(2)>textarea.input-form {
+	height: 96px;
+	min-height: 96px;
+	resize: none;
+}
+
+.inputRecommentBox>form>ul>li:last-child {
+	width: 10%;
+}
+
+.inputRecommentBox>form>ul>li:last-child>button {
+	height: 96px;
+	border: 1px solid black;
+	background-color: black;
+	color: #fff;
+}
+
+/* 댓글관련 css */
+.posting-comment {
+	display: flex;
+	border-top: 2px solid #ccc;
+	list-style-type: none;
+}
+
+.posting-comment>li {
+	box-sizing: border-box;
+}
+
+.posting-comment>li:first-child {
+	width: 15%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100px;
+	border-right: 1px solid #ccc;
+}
+
+.posting-comment.reply>li:first-child {
+	width: 20%;
+}
+
+.posting-comment>li:first-child .material-icons {
+	font-size: 80px;
+}
+
+.posting-comment.reply>li:first-child .material-icons:first-child {
+	font-size: 40px;
+}
+
+.posting-comment.reply>li:last-child {
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+}
+
+.posting-comment>li:last-child {
+	display: flex;
+	flex-direction: column;
+	width: 85%;
+}
+
+.posting-comment>li:last-child>p {
+	width: 100%;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.posting-comment>li:last-child>.comment-info>span {
+	padding: 0px 10px;
+}
+
+.posting-comment>li:last-child>.comment-info>span:not(:last-child) {
+	border-right: 2px solid #ccc;
+}
+
+.posting-comment>li:last-child>.comment-content {
+	padding: 0px 15px;
+}
+
+.posting-comment>li:last-child>.comment-link {
+	text-align: right;
+}
+
+.posting-comment>li:last-child>.comment-link>a {
+	margin: 0px 5px;
+}
+
+.posting-comment>li:last-child>.comment-link>a:hover {
+	text-decoration: underline;
+}
+
+.comment-link>a {
+	text-decoration: none;
+	color: #000;
+}
+
+.material-icons {
+	color: #222222;
 }
 </style>
 </head>
@@ -111,13 +275,40 @@ th {
 	<div class="page-wrap">
 		<div class="page-content">
 			<div class="page-title">자유게시판</div>
+			<%
+			if (m != null) {
+			%>
+			<%
+			if (f.getFreeBoardWriter().equals(m.getMemberId())) {
+			%>
+			<div class="wrap-bottom">
+				<div>
+					<button onclick="freeBoardDelete(<%=f.getFreeBoardNo()%>);">삭제</button>
+					<a
+						href="/freeBoardUpdateFrm.do?freeBoardNo=<%=f.getFreeBoardNo()%>">수정</a>
+				</div>
+			</div>
+			<%
+			} else if (m.getMemberLevel() == 1) {
+			%>
+			<div class="wrap-bottom">
+				<div>
+					<button onclick="freeBoardDelete(<%=f.getFreeBoardNo()%>);">삭제</button>
+				</div>
+			</div>
+			<%
+			}
+			%>
+			<%
+			}
+			%>
 
 			<table class="table table-group-divider" id="freeBoardView">
 				<tr class="table-secondary">
 					<th>제목</th>
 					<td colspan="3" class="td-title"><%=f.getFreeBoardTitle()%></td>
 					<th>작성자</th>
-					<td><%=f.getFreeBoardWriter() %></td>
+					<td><%=f.getFreeBoardWriter()%></td>
 					<th>조회수</th>
 					<td><%=f.getFreeBoardReadCount()%></td>
 					<th>작성일</th>
@@ -142,24 +333,131 @@ th {
 					</td>
 				</tr>
 			</table>
-			<% if (m != null) {%>
-			<%if (f.getFreeBoardWriter().equals(m.getMemberId())) {%>
-			<div class="wrap-bottom">
-				<div>
-					<button onclick="freeBoardDelete(<%=f.getFreeBoardNo()%>);">삭제</button>
-					<a href="/freeBoardUpdateFrm.do?freeBoardNo=<%=f.getFreeBoardNo()%>">수정</a>
-				</div>
+			
+			<%
+			if (m != null) {
+			%>
+
+			<div class="inputCommentBox">
+				<form action="/insertfComment.do" method="post">
+					<ul>
+						<li><span class="material-icons">person</span></li>
+						<li><input type="hidden" name="fCommentWriter"
+							value="<%=m.getMemberId()%>"> <input type="hidden"
+							name="freeBoardRef" value="<%=f.getFreeBoardNo()%>"> <input
+							type="hidden" name="fCommentRef" value="0"> <textarea
+								class="input-form" name="fCommentContent"></textarea></li>
+						<li>
+							<button type="submit" class="btn-repl">댓글쓰기</button>
+						</li>
+					</ul>
+				</form>
 			</div>
-			<%} else if(m.getMemberLevel() == 1) {%>
-				<div class="wrap-bottom">
-				<div>
-					<button onclick="freeBoardDelete(<%=f.getFreeBoardNo()%>);">삭제</button>
-				</div>
-			</div>
-			<%} %>
 			<%
 			}
 			%>
+			<div class="commentBox">
+				<%
+				for (FreeBoardComment fc : fCommentList) {
+				%>
+				<ul class="posting-comment">
+					<li><span class="material-icons">person</span></li>
+					<li>
+						<p class="comment-info">
+							<span><%=fc.getFcommentWriter()%></span> <span><%=fc.getFcommentDate()%></span>
+						</p>
+						<p class="comment-content"><%=fc.getFcommentContent()%></p><textarea name="fCommentContent" class="input-form"
+							style="min-height: 96px; display: none;"><%=fc.getFcommentContent()%></textarea>
+						<p class="comment-link">
+							<%
+							if (m != null) {
+							%>
+							<%
+							if (m.getMemberId().equals(fc.getFcommentWriter())) {
+							%>
+							<a href="javascript:void(0)"
+								onclick="modifyComment(this,<%=fc.getfCommentNo()%>, <%=f.getFreeBoardNo()%>);">수정</a>
+							<a href="javascript:void(0)"
+								onclick="deleteComment(this,<%=fc.getfCommentNo()%>, <%=f.getFreeBoardNo()%>);">삭제</a>
+							<%
+							}
+							%>
+							<a href="javascript:void(0)" class="recShow">답글</a>
+							<%
+							}
+							%>
+						</p>
+					</li>
+				</ul>
+
+				<%
+				for (FreeBoardComment fct : reCommentList) {
+				%>
+				<%
+				if (fct.getfCommentRef() == fc.getfCommentNo()) {
+				%>
+				<ul class="posting-comment reply">
+					<li><span class="material-icons">subdirectory_arrow_right</span>
+						<span class="material-icons">person</span></li>
+					<li>
+						<p class="comment-info">
+							<span><%=fct.getfCommentWriter()%></span> <span><%=fct.getfCommentDate()%></span>
+						</p>
+						<p class="comment-content"><%=fct.getfCommentContent()%></p> <textarea
+							name="fCommentContent" class="input-form"
+							style="min-height: 96px; display: none;"><%=fct.getfCommentContent()%></textarea>
+						<p class="comment-link">
+							<%
+							if (m != null) {
+							%>
+							<%
+							if (m.getMemberId().equals(fct.getfCommentWriter())) {
+							%>
+							<a href="javascript:void(0)"
+								onclick="modifyComment(this,<%=fct.getfCommentNo()%>, <%=f.getFreeBoardNo()%>);">수정</a>
+							<a href="javascript:void(0)"
+								onclick="deleteComment(this,<%=fct.getfCommentNo()%>, <%=f.getFreeBoardNo()%>);">삭제</a>
+							<%
+							}
+							%>
+							<%
+							}
+							%>
+						</p>
+					</li>
+				</ul>
+				<%
+				}
+				%>
+				<%
+				}
+				%>
+				<%
+				if (m != null) {
+				%>
+				<div class="inputRecommentBox">
+					<form action="/insertFcomment.do" method="post">
+						<ul>
+							<li><span class="material-icons">subdirectory_arrow_right</span>
+							</li>
+							<li><input type="hidden" name="fCommentWriter"
+								value="<%=m.getMemberId()%>"> <input type="hidden"
+								name="freeBoardRef" value="<%=f.getFreeBoardNo()%>"> <input
+								type="hidden" name="fCommentRef" value="<%=f.getfCommentNo()%>"> <textarea
+									class="input-form" name="fCommentContent"></textarea></li>
+							<li>
+								<button type="submit" class="btn-repl">댓글쓰기</button>
+							</li>
+						</ul>
+					</form>
+				</div>
+				<%
+				} // 답글달기 form 조건문
+				%>
+				<%
+				} // 댓글종료 반복문 종료
+				%>
+			</div>
 		</div>
 	</div>
 	<script>
