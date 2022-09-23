@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import kr.co.ansany.freeboard.model.vo.FreeBoard;
+import kr.co.ansany.freeboard.model.vo.FreeBoardComment;
+import kr.co.ansany.photo.model.vo.PhotoComment;
 
 public class FreeBoardDao {
 
@@ -169,5 +171,119 @@ public class FreeBoardDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
+	}
+
+	public int insertFreeBoardComment(Connection conn, FreeBoardComment fc) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "insert into freeboard_comment_tbl values(fcomment_seq.nextval,?,?,to_char(sysdate,'yyyy-mm-dd'),?,?)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, fc.getfCommentWriter());
+			pstmt.setString(2, fc.getfCommentContent());
+			pstmt.setInt(3, fc.getFreeBoardRef());
+			pstmt.setString(4, (fc.getfCommentRef() == 0) ? null : String.valueOf(fc.getfCommentRef()));
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteNoticeComment(Connection conn, int fCommentNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from freeboard_comment_tbl where fComment_No = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, fCommentNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateFreeBoardComment(Connection conn, FreeBoardComment fc) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update freeboard_comment_tbl set fComment_content= ? where fComment_no = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, fc.getfCommentContent());
+			pstmt.setInt(2, fc.getfCommentNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return result;
+	}
+
+	public ArrayList<FreeBoardComment> selectFreeBoardCommentList(Connection conn, int freeBoardNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<FreeBoardComment> list = new ArrayList<FreeBoardComment>();
+		String query = "select * from freeboard_comment_tbl where freeboard_ref = ? and fcomment_ref is null order by 1";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, freeBoardNo);
+			rset = pstmt.executeQuery();
+			while (rset.next()) {
+				FreeBoardComment fc = new FreeBoardComment();
+				fc.setfCommentContent(rset.getString("fcomment_content"));
+				fc.setfCommentDate(rset.getString("fcomment_date"));
+				fc.setfCommentNo(rset.getInt("fcomment_no"));
+				fc.setfCommentRef(rset.getInt("fcomment_ref"));
+				fc.setfCommentWriter(rset.getString("fcomment_writer"));
+				fc.setFreeBoardRef(rset.getInt("freeboard_ref"));
+				list.add(fc);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+
+	public ArrayList<FreeBoardComment> selectFreeBoardReCommentList(Connection conn, int freeBoardNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<FreeBoardComment> list = new ArrayList<FreeBoardComment>();
+		String query = "select * from freeboard_comment_tbl where freeboard_ref = ? and fcomment_ref is not null order by 1";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, freeBoardNo);
+			rset = pstmt.executeQuery();
+			while (rset.next()) {
+				FreeBoardComment fc = new FreeBoardComment();
+				fc.setfCommentContent(rset.getString("fcomment_content"));
+				fc.setfCommentDate(rset.getString("fcomment_date"));
+				fc.setfCommentNo(rset.getInt("fcomment_no"));
+				fc.setfCommentRef(rset.getInt("fcomment_ref"));
+				fc.setfCommentWriter(rset.getString("fcomment_writer"));
+				fc.setFreeBoardRef(rset.getInt("freeboard_ref"));
+				list.add(fc);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
 	}
 }

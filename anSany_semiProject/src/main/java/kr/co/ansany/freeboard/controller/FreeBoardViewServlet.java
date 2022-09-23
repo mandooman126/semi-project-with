@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ansany.freeboard.model.service.FreeBoardService;
 import kr.co.ansany.freeboard.model.vo.FreeBoard;
+import kr.co.ansany.freeboard.model.vo.FreeBoardViewData;
 
 /**
  * Servlet implementation class FreeBoardViewServlet
@@ -38,9 +39,9 @@ public class FreeBoardViewServlet extends HttpServlet {
 		int freeBoardNo = Integer.parseInt(request.getParameter("freeBoardNo"));
 
 		FreeBoardService service = new FreeBoardService();
-		FreeBoard f = service.selectOnefreeBoard(freeBoardNo);
+		FreeBoardViewData fvd = service.selectOnefreeBoard(freeBoardNo);
 
-		if (f == null) {
+		if (fvd == null) {
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 			request.setAttribute("title", "조회실패");
 			request.setAttribute("msg", "게시글이 존재하지 않습니다.");
@@ -48,7 +49,9 @@ public class FreeBoardViewServlet extends HttpServlet {
 			request.setAttribute("loc", "/freeBoardList.do?reqPage=1");
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/freeBoard/freeBoardView.jsp");
-			request.setAttribute("f", f);
+			request.setAttribute("f", fvd.getF());
+			request.setAttribute("commentList", fvd.getCommentList());
+			request.setAttribute("reCommentList", fvd.getReCommentList());
 			view.forward(request, response);
 		}
 	}

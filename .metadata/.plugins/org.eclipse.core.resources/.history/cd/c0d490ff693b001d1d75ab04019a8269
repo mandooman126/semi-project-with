@@ -1,0 +1,5 @@
+package kr.co.ansany.freeboard.model.vo;
+
+public class FreeBoardViewData {
+
+}

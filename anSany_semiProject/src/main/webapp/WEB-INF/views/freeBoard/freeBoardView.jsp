@@ -1,8 +1,13 @@
+<%@page import="javax.swing.plaf.synth.SynthOptionPaneUI"%>
+<%@page import="kr.co.ansany.freeboard.model.vo.FreeBoardComment"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="kr.co.ansany.freeboard.model.vo.FreeBoard"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 FreeBoard f = (FreeBoard) request.getAttribute("f");
+ArrayList<FreeBoardComment> commentList = (ArrayList<FreeBoardComment>) request.getAttribute("commentList");
+ArrayList<FreeBoardComment> reCommentList = (ArrayList<FreeBoardComment>) request.getAttribute("reCommentList");
 %>
 <!DOCTYPE html>
 <html>
@@ -65,7 +70,7 @@ p {
 	margin-bottom: 36px;
 }
 
-.wrap-bottom>div>a, button {
+.wrap-bottom>div>a{
 	display: block;
 	width: 80px;
 	line-height: 24px;
@@ -81,6 +86,18 @@ p {
 }
 
 .wrap-bottom>div>button {
+	display: block;
+	width: 80px;
+	line-height: 24px;
+	height: 24px;
+	text-decoration: none;
+	color: black;
+	border: 1px solid black;
+	border-radius: 30px;
+	font-weight: 600;
+	text-align: center;
+	float: right;
+	font-size: 14px;
 	background-color: #000;
 	color: #fff;
 	margin-left: 10px;
@@ -131,10 +148,6 @@ th {
 	height: 96px;
 	min-height: 96px;
 	resize: none;
-}
-
-.inputCommentBox>form>ul>li:last-child {
-	width: 10%;
 }
 
 .inputCommentBox>form>ul>li:last-child>button {
@@ -333,13 +346,13 @@ th {
 					</td>
 				</tr>
 			</table>
-			
+
 			<%
 			if (m != null) {
 			%>
 
 			<div class="inputCommentBox">
-				<form action="/insertfComment.do" method="post">
+				<form action="/insertFcomment.do" method="post">
 					<ul>
 						<li><span class="material-icons">person</span></li>
 						<li><input type="hidden" name="fCommentWriter"
@@ -358,22 +371,23 @@ th {
 			%>
 			<div class="commentBox">
 				<%
-				for (FreeBoardComment fc : fCommentList) {
+				for (FreeBoardComment fc : commentList) {
 				%>
 				<ul class="posting-comment">
 					<li><span class="material-icons">person</span></li>
 					<li>
 						<p class="comment-info">
-							<span><%=fc.getFcommentWriter()%></span> <span><%=fc.getFcommentDate()%></span>
+							<span><%=fc.getfCommentWriter()%></span> <span><%=fc.getfCommentDate()%></span>
 						</p>
-						<p class="comment-content"><%=fc.getFcommentContent()%></p><textarea name="fCommentContent" class="input-form"
-							style="min-height: 96px; display: none;"><%=fc.getFcommentContent()%></textarea>
+						<p class="comment-content"><%=fc.getfCommentContent()%></p>
+						<textarea name="fCommentContent" class="input-form"
+							style="min-height: 96px; display: none;"><%=fc.getfCommentContent()%></textarea>
 						<p class="comment-link">
 							<%
 							if (m != null) {
 							%>
 							<%
-							if (m.getMemberId().equals(fc.getFcommentWriter())) {
+							if (m.getMemberId().equals(fc.getfCommentWriter())) {
 							%>
 							<a href="javascript:void(0)"
 								onclick="modifyComment(this,<%=fc.getfCommentNo()%>, <%=f.getFreeBoardNo()%>);">수정</a>
@@ -443,8 +457,8 @@ th {
 							<li><input type="hidden" name="fCommentWriter"
 								value="<%=m.getMemberId()%>"> <input type="hidden"
 								name="freeBoardRef" value="<%=f.getFreeBoardNo()%>"> <input
-								type="hidden" name="fCommentRef" value="<%=f.getfCommentNo()%>"> <textarea
-									class="input-form" name="fCommentContent"></textarea></li>
+								type="hidden" name="fCommentRef" value="<%=fc.getfCommentNo()%>">
+								<textarea class="input-form" name="fCommentContent"></textarea></li>
 							<li>
 								<button type="submit" class="btn-repl">댓글쓰기</button>
 							</li>
@@ -464,6 +478,59 @@ th {
 		function freeBoardDelete(freeBoardNo){
 			if(confirm("삭제하시겠습니까?")) {
 				location.href="/freeBoardDelete.do?freeBoardNo="+freeBoardNo;
+			}
+		}
+		
+		$(".recShow").on("click",function(){
+			const idx = $(".recShow").index(this);
+			if($(this).text() == "답글") {
+				$(this).text("취소");
+			} else {
+				$(this).text("답글");
+			}
+			$(".inputRecommentBox").eq(idx).toggle();
+			$(".inputRecommentBox").eq(idx).find("textarea").focus();
+		});
+		
+		function modifyComment(obj,fCommentNo,freeBoardNo) {
+			$(obj).parent().prev().show();
+			$(obj).parent().prev().prev().hide();
+			$(obj).text("수정");
+			$(obj).attr("onclick","modifyComplete(this,"+fCommentNo+","+freeBoardNo+")");
+			
+			$(obj).next().text("취소");
+			$(obj).next().attr("onclick","modifyCancle(this,"+fCommentNo+","+freeBoardNo+")");
+			
+			$(obj).next().next().hide();
+		}
+		function modifyCancle(obj,fCommentNo,freeBoardNo){
+			$(obj).parent().prev().hide();
+			$(obj).parent().prev().prev().show();
+			
+			$(obj).prev().text("수정");
+			$(obj).prev().attr("onclick","modifyComment(this,"+fCommentNo+","+freeBoardNo+")");
+			$(obj).text("삭제");
+			$(obj).attr("onclick","deleteComment(this,"+fCommentNo+","+freeBoardNo+")");
+			$(obj).next().show();
+		}
+		
+		function modifyComplete(obj,fCommentNo,freeBoardNo){
+			const form = $("<form action='/freeBoardCommentUpdate.do' method='post'></form>");
+			const fCommentInput = $("<input type ='text' name='fCommentNo'>");
+			fCommentInput.val(fCommentNo);
+			form.append(fCommentInput);
+			const freeBoardInput = $("<input type='text' name='freeBoardNo'>");
+			freeBoardInput.val(freeBoardNo);
+			form.append(freeBoardInput);
+			const fCommentContent = $(obj).parent().prev();
+			form.append(fCommentContent);
+			$("body").append(form);
+			form.submit();
+		}
+		
+		function deleteComment(obj,fCommentNo,freeBoardNo){
+			if(confirm("댓글을 삭제하시겠습니까?")){
+				location.href = "/deleteFreeBoardComment.do?fCommentNo="+fCommentNo+"&freeBoardNo="+freeBoardNo;
 			}
 		}
 	</script>

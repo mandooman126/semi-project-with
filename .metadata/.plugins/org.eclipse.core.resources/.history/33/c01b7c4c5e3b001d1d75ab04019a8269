@@ -1,0 +1,10 @@
+package kr.co.ansany.freeboard.model.vo;
+
+public class FreeBoardComment {
+	private int fCommentNo;
+	private String fCommentWriter;
+	private String fCommentContent;
+	private String fCommentDate;
+	private int freeBoardRef;
+	private int fCommentRef;
+}

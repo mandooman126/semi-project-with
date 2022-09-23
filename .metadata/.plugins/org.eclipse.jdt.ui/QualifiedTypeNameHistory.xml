@@ -15,15 +15,17 @@
     <fullyQualifiedTypeName name="kr.co.ansany.photo.controller.PhotoUpdateServlet"/>
     <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
     <fullyQualifiedTypeName name="kr.co.ansany.photo.model.service.PhotoService"/>
-    <fullyQualifiedTypeName name="java.sql.Connection"/>
-    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
-    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="kr.co.ansany.photo.model.vo.Photo"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="kr.co.ansany.photo.model.vo.PhotoComment"/>
-    <fullyQualifiedTypeName name="common.JDBCTemplate"/>
     <fullyQualifiedTypeName name="kr.co.ansany.photo.model.vo.PhotoViewData"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="kr.co.ansany.freeboard.model.service.FreeBoardService"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="common.JDBCTemplate"/>
     <fullyQualifiedTypeName name="kr.co.ansany.freeboard.model.vo.FreeBoard"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.freeboard.model.vo.FreeBoardComment"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.freeboard.model.vo.FreeBoardViewData"/>
 </qualifiedTypeNameHistroy>

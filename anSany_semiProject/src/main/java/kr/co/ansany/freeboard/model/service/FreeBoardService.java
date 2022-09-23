@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import common.JDBCTemplate;
 import kr.co.ansany.freeboard.model.dao.FreeBoardDao;
 import kr.co.ansany.freeboard.model.vo.FreeBoard;
+import kr.co.ansany.freeboard.model.vo.FreeBoardComment;
 import kr.co.ansany.freeboard.model.vo.FreeBoardPageData;
+import kr.co.ansany.freeboard.model.vo.FreeBoardViewData;
 
 public class FreeBoardService {
 
@@ -45,8 +47,8 @@ public class FreeBoardService {
 				pageNavi += "<li class='page-item active' aria-current='page'><a class='page-link' href='/freeBoardList.do?reqPage="
 						+ pageNo + "'>" + pageNo + "</a></li>";
 			} else {
-				pageNavi += "<li class='page-item'><a class='page-link' href='/freeBoardList.do?reqPage=" + pageNo + "'>"
-						+ pageNo + "</a></li>";
+				pageNavi += "<li class='page-item'><a class='page-link' href='/freeBoardList.do?reqPage=" + pageNo
+						+ "'>" + pageNo + "</a></li>";
 			}
 			pageNo++;
 			if (pageNo > totalPage) {
@@ -78,14 +80,20 @@ public class FreeBoardService {
 		return result;
 	}
 
-	public FreeBoard selectOnefreeBoard(int freeBoardNo) {
+	public FreeBoardViewData selectOnefreeBoard(int freeBoardNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.updateReadCount(conn, freeBoardNo);
 		if (result > 0) {
 			JDBCTemplate.commit(conn);
 			FreeBoard f = dao.selectOneFreeBoard(conn, freeBoardNo);
+			
+			ArrayList<FreeBoardComment> commentList = dao.selectFreeBoardCommentList(conn,freeBoardNo);
+			ArrayList<FreeBoardComment> reCommentList = dao.selectFreeBoardReCommentList(conn,freeBoardNo);
+			
+			FreeBoardViewData fvd = new FreeBoardViewData(f, commentList, reCommentList);
+			
 			JDBCTemplate.close(conn);
-			return f;
+			return fvd;
 		} else {
 			JDBCTemplate.rollback(conn);
 			JDBCTemplate.close(conn);
@@ -125,4 +133,42 @@ public class FreeBoardService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+
+	public int insertFreeBoardComment(FreeBoardComment fc) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.insertFreeBoardComment(conn, fc);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+
+	}
+
+	public int deleteFreeBoardComment(int fCommentNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteNoticeComment(conn, fCommentNo);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int updateFreeBoardComment(FreeBoardComment fc) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateFreeBoardComment(conn,fc);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 }
