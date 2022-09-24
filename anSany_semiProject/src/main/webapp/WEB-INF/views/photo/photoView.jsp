@@ -340,7 +340,7 @@ textarea {
 					<th style="line-height: 300px;">내용</th>
 					<td colspan="9">
 						<div id="photoContent">
-							<img src="/upload/photo/<%=p.getPhotoFilePath()%>"> <br>
+							<img src="/upload/photo/<%=p.getPhotoFilePath()%>" alt=""> <br>
 							<br>
 							<%=p.getPhotoContentBr()%>
 						</div>

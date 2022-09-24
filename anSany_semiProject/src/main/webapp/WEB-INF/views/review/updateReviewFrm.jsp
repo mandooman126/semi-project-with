@@ -88,7 +88,7 @@ p {
 
 	<div class="page-wrap">
 		<div class="page-content">
-			<div class="page-title">공지사항 수정</div>
+			<div class="page-title">구매후기 수정</div>
 			<form action="/reviewUpdate.do" method="post"
 				enctype="multipart/form-data">
 				<table class="table table-borderless" id="reviewWrite">
@@ -104,13 +104,12 @@ p {
 						<td style="text-align: left;">
 							<%
 							if (r.getReviewFilepath() != null) {
-							%> <img src="/img/file.png" width="16px" class="delFile"> <span
+							%> <img src="/img/file.png" width="16px"	 class="delFile"> <span
 							class="delFile"><%=r.getReviewFilename()%></span>
 							<button type="button" class="delFile">삭제</button> <input
 							type="file" name="upfile" style="display: none;"> <input
-							type="hidden" name="oldFilename"
-							value="<%=r.getReviewFilename()%>"> <input type="hidden"
-							name="oldFilepath" value="<%=r.getReviewFilepath()%>"> <%
+							type="hidden" name="oldFilename" value="<%=r.getReviewFilename()%>"> 
+							<input type="hidden" name="oldFilepath" value="<%=r.getReviewFilepath()%>"> <%
  } else {
  %> <input type="file" name="upfile" class="td-2">
 						</td>

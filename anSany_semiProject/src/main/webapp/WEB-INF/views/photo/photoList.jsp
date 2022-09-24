@@ -156,8 +156,16 @@ tbody tr>td:nth-child(2) {
 	background-color: #000;
 	color: #fff;
 }
-.posting-content{
+
+.posting-content {
 	text-align: center;
+}
+.top-logo{
+	text-align: center;
+	margin-bottom: 30px;
+}
+.top-logo>img{
+	width: 200px;
 }
 </style>
 </head>
@@ -169,14 +177,19 @@ tbody tr>td:nth-child(2) {
 				<li><a href="/noticeList.do?reqPage=1"> <span
 						class="tablink">공지사항</span>
 				</a></li>
-				<li><a href="/reviewList.do?reqPage=1"> <span class="tablink">구매후기</span>
+				<li><a href="/reviewList.do?reqPage=1"> <span
+						class="tablink">구매후기</span>
 				</a></li>
 				<li><a href="/photoList.do"> <span class="tablink">사진전</span>
 				</a></li>
-				<li><a href="/freeBoardList.do?reqPage=1"> <span class="tablink">자유게시판</span>
+				<li><a href="/freeBoardList.do?reqPage=1"> <span
+						class="tablink">자유게시판</span>
 				</a></li>
 			</ul>
 		</nav>
+		<div class="top-logo">
+			<img src="/img/logo.png">
+		</div>
 		<%
 		if (m != null) {
 		%>
@@ -237,7 +250,7 @@ tbody tr>td:nth-child(2) {
 								img.attr("src", "/upload/photo/"
 										+ p.photoFilePath);
 								imgTag.append(img);
-								
+
 								imgDiv.append(imgTag);
 
 								const titleDiv = $("<div>");

@@ -12,7 +12,7 @@ import common.JDBCTemplate;
 import kr.co.ansany.review.model.dao.ReviewDao;
 
 public class ReviewService {
-	
+
 	private ReviewDao dao;
 
 	public ReviewService() {
@@ -48,8 +48,8 @@ public class ReviewService {
 				pageNavi += "<li class='page-item active' aria-current='page'><a class='page-link' href='/reviewList.do?reqPage="
 						+ pageNo + "'>" + pageNo + "</a></li>";
 			} else {
-				pageNavi += "<li class='page-item'><a class='page-link' href='/reviewList.do?reqPage=" + pageNo
-						+ "'>" + pageNo + "</a></li>";
+				pageNavi += "<li class='page-item'><a class='page-link' href='/reviewList.do?reqPage=" + pageNo + "'>"
+						+ pageNo + "</a></li>";
 			}
 			pageNo++;
 			if (pageNo > totalPage) {
@@ -84,15 +84,15 @@ public class ReviewService {
 	public ReviewViewData selectOneReview(int reviewNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.updateReadCount(conn, reviewNo);
-		if(result > 0) {
+		if (result > 0) {
 			JDBCTemplate.commit(conn);
 			Review r = dao.selectOneReview(conn, reviewNo);
-			
+
 			ArrayList<ReviewComment> commentList = dao.selectReviewCommentList(conn, reviewNo);
 			ArrayList<ReviewComment> reCommentList = dao.selectReviewReCommentList(conn, reviewNo);
-			
+
 			ReviewViewData rvd = new ReviewViewData(r, commentList, reCommentList);
-			
+
 			JDBCTemplate.close(conn);
 			return rvd;
 		} else {
@@ -112,7 +112,13 @@ public class ReviewService {
 	public int updateReview(Review r) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.updateReview(conn, r);
-		return 0;
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
 	}
 
 	public int insertReviewComment(ReviewComment rc) {
@@ -131,7 +137,14 @@ public class ReviewService {
 		Connection conn = JDBCTemplate.getConnection();
 		Review r = dao.selectOneReview(conn, reviewNo);
 		int result = dao.deleteReview(conn, reviewNo);
-		return null;
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+			r = null;
+		}
+		JDBCTemplate.close(conn);
+		return r;
 	}
 
 	public int deleteReviewComment(int rCommentNo) {
@@ -148,8 +161,8 @@ public class ReviewService {
 
 	public int updateReviewComment(ReviewComment rc) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.updateFreeBoardComment(conn,rc);
-		if(result > 0) {
+		int result = dao.updateFreeBoardComment(conn, rc);
+		if (result > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
@@ -157,7 +170,5 @@ public class ReviewService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
-	
-	
 
 }

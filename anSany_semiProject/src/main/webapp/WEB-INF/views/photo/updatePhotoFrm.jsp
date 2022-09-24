@@ -91,7 +91,7 @@ textarea.input-form {
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="page-wrap">
 		<div class="page-content">
-			<div class="page-title">사진전</div>
+			<div class="page-title">사진전 수정</div>
 			<form action="/photoUpdate.do" method="post"
 				enctype="multipart/form-data">
 				<table class="table table-bordered" id="photoWrite">

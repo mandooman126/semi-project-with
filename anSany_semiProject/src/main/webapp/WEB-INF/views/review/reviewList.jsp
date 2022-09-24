@@ -154,6 +154,15 @@ tbody tr>td:nth-child(2) {
 	color: white;
 	border-color: #5865f5;
 }
+
+.top-logo {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.top-logo>img {
+	width: 200px;
+}
 </style>
 </head>
 <body>
@@ -175,6 +184,9 @@ tbody tr>td:nth-child(2) {
 
 			</ul>
 		</nav>
+		<div class="top-logo">
+			<img src="/img/logo.png">
+		</div>
 		<%
 		if (m != null) {
 		%>

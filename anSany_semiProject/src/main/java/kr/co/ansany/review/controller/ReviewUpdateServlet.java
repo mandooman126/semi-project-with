@@ -63,8 +63,8 @@ public class ReviewUpdateServlet extends HttpServlet {
 		r.setReviewNo(reviewNo);
 		r.setReviewTitle(reviewTitle);
 		r.setReviewContent(reviewContent);
-		r.setReviewFilename(oldFilename);
-		r.setReviewFilepath(oldFilepath);
+		r.setReviewFilename(fileName);
+		r.setReviewFilepath(filePath);
 		
 		ReviewService service = new ReviewService();
 		int result = service.updateReview(r);

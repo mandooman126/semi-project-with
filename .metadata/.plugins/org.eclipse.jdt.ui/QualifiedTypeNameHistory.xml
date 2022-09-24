@@ -25,14 +25,14 @@
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="kr.co.ansany.review.model.vo.ReviewPageData"/>
-    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="kr.co.ansany.review.controller.ReviewWriteFrmServlet"/>
-    <fullyQualifiedTypeName name="kr.co.ansany.review.model.vo.ReviewViewData"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
-    <fullyQualifiedTypeName name="common.JDBCTemplate"/>
     <fullyQualifiedTypeName name="kr.co.ansany.review.model.vo.ReviewComment"/>
-    <fullyQualifiedTypeName name="kr.co.ansany.review.model.service.ReviewService"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="kr.co.ansany.review.model.vo.Review"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.review.model.service.ReviewService"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.review.model.vo.ReviewViewData"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="common.JDBCTemplate"/>
 </qualifiedTypeNameHistroy>

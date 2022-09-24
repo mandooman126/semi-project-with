@@ -66,6 +66,11 @@ p {
 	padding-left: 10px;
 }
 
+#reviewImg>img {
+	max-height: 400px;
+	max-width: 400px;
+}
+
 .wrap-bottom {
 	width: 960x;
 	margin: 0 auto;
@@ -329,15 +334,18 @@ th {
 					<td><%=r.getReviewDate()%></td>
 				</tr>
 				<tr>
-					<th>첨부파일</th>
+					<th>리뷰사진</th>
 					<td colspan="9">
-						<%
-						if (r.getReviewFilename() != null) {
-						%> <img src="/img/file.png" width="16px"> <a
-						href="/reviewFileDown.do?reviewNo=<%=r.getReviewNo()%>"><%=r.getReviewFilename()%></a>
-						<%
-						}
-						%>
+						<div id="reviewImg">
+							<%
+							if (r.getReviewFilename() != null) {
+							%>
+							<img src="/upload/review/<%=r.getReviewFilepath()%>" alt="">
+							<%
+							}
+							%>
+						</div>
+
 					</td>
 				</tr>
 				<tr>

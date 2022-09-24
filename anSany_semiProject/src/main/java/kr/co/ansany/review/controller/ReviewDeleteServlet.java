@@ -53,12 +53,12 @@ public class ReviewDeleteServlet extends HttpServlet {
 			request.setAttribute("title", "삭제완료");
 			request.setAttribute("msg", "삭제가 완료되었습니다.");
 			request.setAttribute("icon", "success");
-			request.setAttribute("loc", "/freeBoardList.do?reqPage=1");
+			request.setAttribute("loc", "/reviewList.do?reqPage=1");
 		} else {
 			request.setAttribute("title", "삭제실패");
 			request.setAttribute("msg", "관리자에게 문의하세요.");
 			request.setAttribute("icon", "error");
-			request.setAttribute("loc", "/freeBoardView.do?reviewNo=" + reviewNo);
+			request.setAttribute("loc", "/reviewView.do?reviewNo=" + reviewNo);
 		}
 		view.forward(request, response);
 	}
