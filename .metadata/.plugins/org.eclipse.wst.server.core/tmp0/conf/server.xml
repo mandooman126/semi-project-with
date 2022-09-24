@@ -152,7 +152,11 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
+<<<<<<< HEAD
       <Context docBase="C:\Users\Lee Jungwoo\Documents\semi-project-with\anSany_semiProject\src\main\webapp" path="" reloadable="true" source="org.eclipse.jst.jee.server:anSany_semiProject"><Resources><PreResources base="C:\Users\Lee Jungwoo\Documents\semi-project-with\anSany_semiProject\build\classes" classLoaderOnly="false" className="org.apache.catalina.webresources.DirResourceSet" internalPath="/" webAppMount="/WEB-INF/classes"/></Resources></Context></Host>
+=======
+      <Context docBase="C:\Users\Lee Jungwoo\Desktop\ANSANY-semi-project-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\anSany_semiProject" path="" reloadable="true" source="org.eclipse.jst.jee.server:anSany_semiProject"/></Host>
+>>>>>>> feature/board-page
     </Engine>
   </Service>
 </Server>
