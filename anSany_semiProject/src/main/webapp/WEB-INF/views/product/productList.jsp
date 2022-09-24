@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/productPage.css">
-<link rel="stylesheet" href="css/notosans.css">
+<link rel="stylesheet" href="css/Noto_Sans.css">
 <title>오디오</title>
 </head>
 <body>

@@ -13,6 +13,7 @@ String pageNavi = (String) request.getAttribute("pageNavi");
 <meta charset="UTF-8">
 <title>공지사항 목록</title>
 <link rel="stylesheet" href="/css/bootstrap.css" />
+<link rel="stylesheet" href="/css/Noto_Sans.css" />
 <style>
 .header-logo>a>img {
 	margin-bottom: 14px;
@@ -26,7 +27,6 @@ String pageNavi = (String) request.getAttribute("pageNavi");
 	padding-bottom: 81px;
 	background-color: #fff;
 }
-
 
 tbody {
 	text-align: center;
@@ -42,6 +42,7 @@ tbody tr>td:nth-child(2) {
 	margin: 0 auto;
 	padding: 40px 0 20px;
 	float: none;
+	font-family: ns-bold;
 }
 
 .page-navi ul {
@@ -150,13 +151,16 @@ tbody tr>td:nth-child(2) {
 	color: white;
 	border-color: #5865f5;
 }
-.table-hover{
+
+.table-hover {
 	border-top: 1.5px solid #000;
 }
-.table-hover>thead>tr{
+
+.table-hover>thead>tr {
 	border-bottom: 1.5px solid #000;
 }
-.table-hover>thead>tr>th{
+
+.table-hover>thead>tr>th {
 	color: #000;
 }
 </style>
@@ -169,7 +173,8 @@ tbody tr>td:nth-child(2) {
 				<li><a href="/noticeList.do?reqPage=1"> <span
 						class="tablink">공지사항</span>
 				</a></li>
-				<li><a href="#"> <span class="tablink">구매후기</span>
+				<li><a href="/reviewList.do?reqPage=1"> <span
+						class="tablink">구매후기</span>
 				</a></li>
 				<li><a href="/photoList.do"> <span class="tablink">사진전</span>
 				</a></li>

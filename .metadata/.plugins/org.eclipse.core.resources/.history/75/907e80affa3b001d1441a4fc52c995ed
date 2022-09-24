@@ -1,0 +1,10 @@
+package kr.co.ansany.review.model.vo;
+
+public class ReviewComment {
+	private int rCommentNo;
+	private String rCommentWriter;
+	private String rCommentContent;
+	private String rCommentDate;
+	private int reivewRef;
+	private int rCommentRef;
+}

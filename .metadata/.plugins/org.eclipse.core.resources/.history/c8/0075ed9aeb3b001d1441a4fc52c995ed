@@ -1,0 +1,33 @@
+package kr.co.ansany.review.model.service;
+
+import kr.co.ansany.review.model.vo.Review;
+import kr.co.ansany.review.model.vo.ReviewPageData;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import common.JDBCTemplate;
+import kr.co.ansany.review.model.dao.ReviewDao;
+
+public class ReviewService {
+	
+	private ReviewDao dao;
+
+	public ReviewService() {
+		super();
+		dao = new ReviewDao();
+	}
+
+	public ReviewPageData selectReviewList(int reqPage) {
+		Connection conn = JDBCTemplate.getConnection();
+		int numPerPage = 10; // 페이지당 게시물 수
+		int end = numPerPage * reqPage;
+		int start = end - numPerPage + 1;
+		ArrayList<Review> list = dao.selectReviewList(conn, start, end);
+		int totalCount = dao.selectReviewCount(conn);
+		return null;
+	}
+	
+	
+
+}

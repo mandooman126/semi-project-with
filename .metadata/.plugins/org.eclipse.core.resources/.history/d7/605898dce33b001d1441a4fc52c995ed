@@ -1,0 +1,26 @@
+package kr.co.ansany.review.model.service;
+
+import kr.co.ansany.review.model.vo.ReviewPageData;
+
+import java.sql.Connection;
+
+import common.JDBCTemplate;
+import kr.co.ansany.review.model.dao.ReviewDao;
+
+public class ReviewService {
+	
+	private ReviewDao dao;
+
+	public ReviewService() {
+		super();
+		dao = new ReviewDao();
+	}
+
+	public ReviewPageData selectReviewList(int reqPage) {
+		Connection conn = JDBCTemplate.getConnection();
+		return null;
+	}
+	
+	
+
+}

@@ -13,6 +13,7 @@ String pageNavi = (String) request.getAttribute("pageNavi");
 <meta charset="UTF-8">
 <title>자유게시판 목록</title>
 <link rel="stylesheet" href="/css/bootstrap.css" />
+<link rel="stylesheet" href="/css/Noto_Sans.css" />
 <style>
 .header-logo>a>img {
 	margin-bottom: 14px;
@@ -45,6 +46,7 @@ tbody tr>td:nth-child(2) {
 	margin: 0 auto;
 	padding: 40px 0 20px;
 	float: none;
+	font-family: ns-bold;
 }
 
 .page-navi ul {
@@ -162,7 +164,8 @@ tbody tr>td:nth-child(2) {
 				<li><a href="/noticeList.do?reqPage=1"> <span
 						class="tablink">공지사항</span>
 				</a></li>
-				<li><a href="#"> <span class="tablink">구매후기</span>
+				<li><a href="/reviewList.do?reqPage=1"> <span
+						class="tablink">구매후기</span>
 				</a></li>
 				<li><a href="/photoList.do"> <span class="tablink">사진전</span>
 				</a></li>
@@ -200,7 +203,8 @@ tbody tr>td:nth-child(2) {
 				<tbody class="table">
 					<tr>
 						<th scope="row"><%=f.getFreeBoardNo()%></th>
-						<td><a href="/freeBoardView.do?freeBoardNo=<%=f.getFreeBoardNo()%>"><%=f.getFreeBoardTitle()%></a></td>
+						<td><a
+							href="/freeBoardView.do?freeBoardNo=<%=f.getFreeBoardNo()%>"><%=f.getFreeBoardTitle()%></a></td>
 						<td><%=f.getFreeBoardWriter()%></td>
 						<td><%=f.getFreeBoardDate()%></td>
 						<td><%=f.getFreeBoardReadCount()%></td>

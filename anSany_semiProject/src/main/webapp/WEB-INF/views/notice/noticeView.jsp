@@ -10,6 +10,7 @@ Notice n = (Notice) request.getAttribute("n");
 <meta charset="UTF-8">
 <title>공지사항</title>
 <link rel="stylesheet" href="/css/bootstrap.css" />
+<link rel="stylesheet" href="/css/Noto_Sans.css" />
 <style>
 .header-logo>a>img {
 	margin-bottom: 14px;
@@ -51,6 +52,7 @@ p {
 	padding: 20px 0px;
 	padding-left: 10px;
 	font-size: 1.5rem;
+	font-family: ns-bold;
 }
 
 #noticeContent {

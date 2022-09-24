@@ -27,3 +27,11 @@
 1663913142913	Rename type 'InsertCommentServlet'
 1663950901150	Copy compilation unit
 1663950911238	Delete element
+1664023234435	Copy compilation unit
+1664023248183	Rename type 'DeleteFreeBoardCommentServlet'
+1664023447726	Copy compilation unit
+1664023456230	Rename type 'FreeBoardCommentUpdateServlet'
+1664028190870	Delete element
+1664028194315	Rename type 'InsertRcommentServlet2'
+1664028410780	Delete element
+1664028419933	Rename resource 'font'

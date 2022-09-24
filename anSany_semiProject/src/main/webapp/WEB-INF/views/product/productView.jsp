@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <title>제품 상세 페이지</title>
 <link rel="stylesheet" href="css/productView.css">
-<link rel="stylesheet" href="css/notosans.css">
+<link rel="stylesheet" href="css/Noto_Sans.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>

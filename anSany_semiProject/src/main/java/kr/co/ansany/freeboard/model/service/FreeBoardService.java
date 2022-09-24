@@ -110,16 +110,16 @@ public class FreeBoardService {
 
 	public FreeBoard deleteFreeBoard(int freeBoardNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		FreeBoard n = dao.selectOneFreeBoard(conn, freeBoardNo);
+		FreeBoard f = dao.selectOneFreeBoard(conn, freeBoardNo);
 		int result = dao.deleteFreeBoard(conn, freeBoardNo);
 		if (result > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
-			n = null;
+			f = null;
 		}
 		JDBCTemplate.close(conn);
-		return n;
+		return f;
 	}
 
 	public int updateFreeBoard(FreeBoard f) {

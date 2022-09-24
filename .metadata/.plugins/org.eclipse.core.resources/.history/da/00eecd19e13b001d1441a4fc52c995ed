@@ -1,0 +1,13 @@
+package kr.co.ansany.review.model.vo;
+
+public class Review {
+	private int reviewNo;
+	private String reviewTitle;
+	private String reviewWriter;
+	private String reviewContent;
+	private int reviewReadCount;
+	private String reviewDate;
+	private String reviewFilename;
+	private String reviewFilepath;
+
+}

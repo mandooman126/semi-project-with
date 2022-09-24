@@ -1,4 +1,4 @@
-package kr.co.ansany.freeboard.controller;
+	package kr.co.ansany.freeboard.controller;
 
 import java.io.IOException;
 

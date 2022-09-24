@@ -1,0 +1,12 @@
+package kr.co.ansany.review.model.vo;
+
+import java.util.ArrayList;
+
+import kr.co.ansany.freeboard.model.vo.FreeBoard;
+import kr.co.ansany.freeboard.model.vo.FreeBoardComment;
+
+public class ReviewViewData {
+	private Review r;
+	private ArrayList<ReviewComment> commentList;
+	private ArrayList<ReviewComment> reCommentList;
+}
