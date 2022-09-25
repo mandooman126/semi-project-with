@@ -42,6 +42,8 @@ public class SearchReviewServlet extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/review/reviewList.jsp");
 		request.setAttribute("list", rpd.getList());
 		request.setAttribute("pageNavi", rpd.getPageNavi());
+		request.setAttribute("searchCategory", searchCategory);
+		request.setAttribute("searchKeyWord", searchKeyWord);
 		view.forward(request, response);
 	}
 

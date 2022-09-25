@@ -6,6 +6,8 @@
 <%
 ArrayList<Notice> list = (ArrayList<Notice>) request.getAttribute("list");
 String pageNavi = (String) request.getAttribute("pageNavi");
+Integer searchCategory = (Integer) request.getAttribute("searchCategory");
+String searchKeyWord = (String) request.getAttribute("searchKeyWord");
 %>
 <!DOCTYPE html>
 <html>
@@ -38,7 +40,7 @@ tbody tr>td:nth-child(2) {
 }
 
 .page-navi {
-	width: 100%;
+	width: 1280px;
 	margin: 0 auto;
 	padding: 40px 0 20px;
 	float: none;
@@ -212,6 +214,41 @@ tbody tr>td:nth-child(2) {
 			<div class="row">
 				<form method="get" action="/searchNotice.do">
 					<table class="pull-right">
+						<%
+						if (searchKeyWord != null && searchCategory == 1) {
+						%>
+						<tr>
+							<td><input type="hidden" value=1 name="reqPage"></td>
+							<td><select class="form-select form-select-sm"
+								name="searchCategory">
+									<option value="1" selected="selected">제목</option>
+									<option value="2">내용</option>
+							</select></td>
+							<td style="padding-left: 5px; padding-right: 5px;"><input
+								type="text" class="form-control form-control-sm"
+								placeholder="검색어 입력" name="searchKeyWord"
+								value="<%=searchKeyWord%>" required></td>
+							<td><button type="submit"
+									class="btn-control form-control-sm">검색</button></td>
+						</tr>
+						<%
+						} else if(searchKeyWord != null && searchCategory == 2) {
+						%>
+						<tr>
+							<td><input type="hidden" value=1 name="reqPage"></td>
+							<td><select class="form-select form-select-sm"
+								name="searchCategory">
+									<option value="1">제목</option>
+									<option value="2" selected="selected">내용</option>
+							</select></td>
+							<td style="padding-left: 5px; padding-right: 5px;"><input
+								type="text" class="form-control form-control-sm"
+								placeholder="검색어 입력" name="searchKeyWord"
+								value="<%=searchKeyWord%>" required></td>
+							<td><button type="submit"
+									class="btn-control form-control-sm">검색</button></td>
+						</tr>
+						<%} else{%>
 						<tr>
 							<td><input type="hidden" value=1 name="reqPage"></td>
 							<td><select class="form-select form-select-sm"
@@ -225,6 +262,10 @@ tbody tr>td:nth-child(2) {
 							<td><button type="submit"
 									class="btn-control form-control-sm">검색</button></td>
 						</tr>
+						<%
+						}
+						%>
+
 					</table>
 				</form>
 			</div>

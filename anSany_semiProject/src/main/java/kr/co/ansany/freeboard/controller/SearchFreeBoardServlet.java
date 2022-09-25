@@ -42,6 +42,8 @@ public class SearchFreeBoardServlet extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/freeBoard/freeBoardList.jsp");
 		request.setAttribute("list", fpd.getList());
 		request.setAttribute("pageNavi", fpd.getPageNavi());
+		request.setAttribute("searchCategory", searchCategory);
+		request.setAttribute("searchKeyWord", searchKeyWord);
 		view.forward(request, response);
 	}
 

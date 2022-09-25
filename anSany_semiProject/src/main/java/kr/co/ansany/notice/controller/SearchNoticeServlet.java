@@ -46,6 +46,8 @@ public class SearchNoticeServlet extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/noticeList.jsp");
 		request.setAttribute("list", npd.getList());
 		request.setAttribute("pageNavi", npd.getPageNavi());
+		request.setAttribute("searchCategory", searchCategory);
+		request.setAttribute("searchKeyWord", searchKeyWord);
 		view.forward(request, response);
 	}
 
@@ -58,5 +60,4 @@ public class SearchNoticeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }
