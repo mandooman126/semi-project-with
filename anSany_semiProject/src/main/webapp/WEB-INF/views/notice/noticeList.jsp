@@ -80,7 +80,7 @@ tbody tr>td:nth-child(2) {
 
 .table_wrap {
 	width: 100%;
-	padding-top: 40px;
+	padding-top: 5px;
 	padding-bottom: 30px;
 }
 
@@ -130,6 +130,7 @@ tbody tr>td:nth-child(2) {
 .top-wrap {
 	width: 1280px;
 	margin: 0 auto;
+	overflow: hidden;
 }
 
 .top-wrap>div>a {
@@ -143,7 +144,7 @@ tbody tr>td:nth-child(2) {
 	border-radius: 30px;
 	font-weight: 600;
 	text-align: center;
-	float: right;
+	float: left;
 }
 
 .top-wrap>div>a:hover {
@@ -163,12 +164,24 @@ tbody tr>td:nth-child(2) {
 .table-hover>thead>tr>th {
 	color: #000;
 }
-.top-logo{
+
+.top-logo {
 	text-align: center;
-	margin-bottom: 30px;
+	margin-bottom: 50px;
 }
-.top-logo>img{
+
+.top-logo>img {
 	width: 200px;
+}
+
+.row {
+	float: right;
+}
+
+.btn-control {
+	border: 0;
+	color: #fff;
+	background: #000;
 }
 </style>
 </head>
@@ -194,17 +207,41 @@ tbody tr>td:nth-child(2) {
 		<div class="top-logo">
 			<img src="/img/logo.png">
 		</div>
-		<%
-		if (m != null && m.getMemberLevel() == 1) {
-		%>
+
 		<div class="top-wrap">
+			<div class="row">
+				<form method="get" action="/searchNotice.do">
+					<table class="pull-right">
+						<tr>
+							<td><input type="hidden" value=1 name="reqPage"></td>
+							<td><select class="form-select form-select-sm"
+								name="searchCategory">
+									<option value="1">제목</option>
+									<option value="2">내용</option>
+							</select></td>
+							<td style="padding-left: 5px; padding-right: 5px;"><input
+								type="text" class="form-control form-control-sm"
+								placeholder="검색어 입력" name="searchKeyWord"></td>
+							<td><button type="submit"
+									class="btn-control form-control-sm">검색</button></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+
+			<%
+			if (m != null && m.getMemberLevel() == 1) {
+			%>
 			<div>
 				<a href="/noticeWriteFrm.do">글쓰기</a>
 			</div>
+			<%
+			}
+			%>
 		</div>
-		<%
-		}
-		%>
+
+
+
 		<div class="table_wrap">
 			<table class="table table-hover">
 				<thead class="table">

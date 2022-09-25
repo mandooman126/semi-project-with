@@ -2,10 +2,7 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="kr.co.ansany.notice.model.dao.NoticeDao"/>
-    <fullyQualifiedTypeName name="kr.co.ansany.notice.model.vo.NoticePageData"/>
     <fullyQualifiedTypeName name="javax.swing.plaf.multi.MultiButtonUI"/>
-    <fullyQualifiedTypeName name="kr.co.ansany.notice.model.vo.Notice"/>
-    <fullyQualifiedTypeName name="kr.co.ansany.notice.model.service.NoticeService"/>
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="kr.co.ansany.photo.model.dao.PhotoDao"/>
     <fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.RequestContext"/>
@@ -17,22 +14,26 @@
     <fullyQualifiedTypeName name="kr.co.ansany.photo.model.vo.Photo"/>
     <fullyQualifiedTypeName name="kr.co.ansany.photo.model.vo.PhotoComment"/>
     <fullyQualifiedTypeName name="kr.co.ansany.photo.model.vo.PhotoViewData"/>
-    <fullyQualifiedTypeName name="kr.co.ansany.freeboard.model.service.FreeBoardService"/>
-    <fullyQualifiedTypeName name="kr.co.ansany.freeboard.model.vo.FreeBoard"/>
     <fullyQualifiedTypeName name="kr.co.ansany.freeboard.model.vo.FreeBoardComment"/>
     <fullyQualifiedTypeName name="kr.co.ansany.freeboard.model.vo.FreeBoardViewData"/>
     <fullyQualifiedTypeName name="kr.co.ansany.review.model.dao.ReviewDao"/>
-    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
-    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
-    <fullyQualifiedTypeName name="kr.co.ansany.review.model.vo.ReviewPageData"/>
     <fullyQualifiedTypeName name="kr.co.ansany.review.controller.ReviewWriteFrmServlet"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="kr.co.ansany.review.model.vo.ReviewComment"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
-    <fullyQualifiedTypeName name="kr.co.ansany.review.model.vo.Review"/>
-    <fullyQualifiedTypeName name="kr.co.ansany.review.model.service.ReviewService"/>
     <fullyQualifiedTypeName name="kr.co.ansany.review.model.vo.ReviewViewData"/>
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.notice.model.service.NoticeService"/>
     <fullyQualifiedTypeName name="common.JDBCTemplate"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.notice.model.vo.Notice"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.notice.model.vo.NoticePageData"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.freeboard.model.service.FreeBoardService"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.freeboard.model.vo.FreeBoardPageData"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.freeboard.model.vo.FreeBoard"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.review.model.service.ReviewService"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.review.model.vo.ReviewPageData"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="kr.co.ansany.review.model.vo.Review"/>
 </qualifiedTypeNameHistroy>

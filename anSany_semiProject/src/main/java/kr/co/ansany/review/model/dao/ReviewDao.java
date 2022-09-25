@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import common.JDBCTemplate;
+import kr.co.ansany.freeboard.model.vo.FreeBoard;
 import kr.co.ansany.review.model.vo.Review;
 import kr.co.ansany.review.model.vo.ReviewComment;
 
@@ -281,5 +282,117 @@ public class ReviewDao {
 		}
 
 		return result;
+	}
+
+	public ArrayList<Review> searchReview(Connection conn, int searchCategory, String searchKeyWord, int start,
+			int end) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Review> list = new ArrayList<>();
+		if (searchCategory == 1) {
+			try {
+				pstmt = conn.prepareStatement(
+						"select * from (select rownum as rnum, n.* from (select * from review_tbl where review_title like ? order by review_no desc)n) where rnum between ? and ?");
+				pstmt.setString(1, "%" + searchKeyWord + "%");
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (searchCategory == 2) {
+			try {
+				pstmt = conn.prepareStatement(
+						"select * from (select rownum as rnum, n.* from (select * from review_tbl where review_content like ? order by review_no desc)n) where rnum between ? and ?");
+				pstmt.setString(1, "%" + searchKeyWord + "%");
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (searchCategory == 3) {
+			try {
+				pstmt = conn.prepareStatement(
+						"select * from (select rownum as rnum, n.* from (select * from review_tbl where review_writer like ? order by review_no desc)n) where rnum between ? and ?");
+				pstmt.setString(1, "%" + searchKeyWord + "%");
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		try {
+			rset = pstmt.executeQuery();
+			while (rset.next()) {
+				Review r = new Review();
+				r.setReviewFilename(rset.getString("Review_filename"));
+				r.setReviewFilepath(rset.getString("Review_filepath"));
+				r.setReviewContent(rset.getString("Review_content"));
+				r.setReviewDate(rset.getString("Review_date"));
+				r.setReviewNo(rset.getInt("Review_no"));
+				r.setReviewReadCount(rset.getInt("Review_readcount"));
+				r.setReviewTitle(rset.getString("Review_title"));
+				r.setReviewWriter(rset.getString("Review_writer"));
+				list.add(r);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+
+	public int selectReviewCount(Connection conn, int searchCategory, String searchKeyWord) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int totalCount = 0;
+		if (searchCategory == 1) {
+			try {
+				pstmt = conn.prepareStatement(
+						"select count(*) as cnt from review_tbl where review_title like ? order by review_no desc");
+				pstmt.setString(1, "%" + searchKeyWord + "%");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} else if (searchCategory == 2) {
+			try {
+				pstmt = conn.prepareStatement(
+						"select count(*) as cnt from review_tbl where review_content like ? order by review_no desc");
+				pstmt.setString(1, "%" + searchKeyWord + "%");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (searchCategory == 3) {
+			try {
+				pstmt = conn.prepareStatement(
+						"select count(*) as cnt from review_tbl where review_writer like ? order by review_no desc");
+				pstmt.setString(1, "%" + searchKeyWord + "%");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		try {
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				totalCount = rset.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return totalCount;
 	}
 }
