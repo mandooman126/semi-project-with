@@ -1,16 +1,6 @@
-INDEX VERSION 1.4+C:\Users\Dajw\Documents\semi-project-with\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-2024175536.index
-3830923323.index
-844814097.index
-1361861584.index
-1503651726.index
-2479393352.index
-4241321539.index
+INDEX VERSION 1.4+C:\Users\Dajw\Documents\semi-project-with3\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2464182450.index
+3330237813.index
 1068188815.index
-1774576746.index
-432536370.index
-1617076180.index
-552228091.index
-3896579076.index
-2123181086.index
-2443265751.index
+274765381.index
+703103049.index
