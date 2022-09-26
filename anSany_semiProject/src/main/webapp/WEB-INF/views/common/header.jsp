@@ -36,11 +36,11 @@ Member m = (Member) session.getAttribute("m");
 							</ul></li>
 						<li><a href="#">멤버십</a>
 							<ul>
-								<li><a href="#">등급&혜택 안내</a></li>
+								<li><a href="/membership.do">등급&혜택 안내</a></li>
 							</ul></li>
 						<li><a href="#">고객 서비스</a>
 							<ul>
-								<li><a href="#">FAQ / Q<span>&</span>A
+								<li><a href="/faqqnaList.do?reqPage=1&type=faq">FAQ / Q<span>&</span>A
 								</a></li>
 								<li><a href="#"></a></li>
 							</ul></li>
