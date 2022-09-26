@@ -36,11 +36,11 @@ public class SearchNoticeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		
+
 		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		int searchCategory = Integer.parseInt(request.getParameter("searchCategory"));
 		String searchKeyWord = request.getParameter("searchKeyWord");
-		
+
 		NoticeService service = new NoticeService();
 		NoticePageData npd = service.searchNotice(searchCategory, searchKeyWord, reqPage);
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/noticeList.jsp");
